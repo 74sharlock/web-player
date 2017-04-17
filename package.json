@@ -1,0 +1,22 @@
+{
+  "name": "web-music-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "prod": "gulp --production"
+  },
+  "keywords": [
+    "74sharlock"
+  ],
+  "author": "74sharlock",
+  "license": "ISC",
+  "devDependencies": {
+    "balm": "^0.6.0-beta.5",
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "vue": "^2.2.6"
+  }
+}

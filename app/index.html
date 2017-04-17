@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>易班网页音频播放器</title>
+  <link rel="stylesheet" href="css/player.css">
+</head>
+<body>
+
+<div id="yiBanWebPlayer" class="yiban-web-player hidden">
+  <div class="player-container">
+    <div class="flash-btn icon-flash" :class="{active: showAnalyzer}" @click="toggleAnalyzer"></div>
+    <div class="loop-btn" :class="'model-' + loopModel" @click="tabLoopModel"></div>
+    <div class="name"><span>{{song.name}}</span></div>
+    <div class="artist"><span>{{song.artist}}{{song.album ? ' -《' + song.album + '》' : ''}}</span></div>
+    <div class="cover" cover>
+    <span
+      :class="{'no-cover': !song.cover}"
+      :style="{backgroundImage: song.cover ? 'url(' + song.cover + ')' : 'none'}"></span>
+    </div>
+    <div class="progress">
+      <div class="timer">{{currentTime}}</div>
+      <div class="line" @click="playFromHere($event)">
+        <div class="back-line"></div>
+        <div class="cache-line"></div>
+        <div class="front-line" :style="{width: progress}"></div>
+      </div>
+      <div class="time-range">{{duration}}</div>
+    </div>
+    <div class="actions">
+      <div class="player-control-btn prev icon-to-start" @click="playPrev"></div>
+      <div class="player-control-btn play-btn"
+           :class="{'icon-play': paused, 'icon-pause': !paused}"
+           @click="togglePlay"></div>
+      <div class="player-control-btn next icon-to-end" @click="playNext"></div>
+    </div>
+    <transition name="show-analyzer">
+      <div class="player-analyzer" v-show="showAnalyzer"></div>
+    </transition>
+  </div>
+</div>
+
+<script src="js/player_v1.1.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>
