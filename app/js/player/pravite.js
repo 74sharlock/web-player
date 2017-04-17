@@ -1,4 +1,4 @@
-import {_random} from '../common/util'
+import {_random, _type, _timeFormat} from './util'
 
 let _analyser = null;
 let _audioNode = null;
@@ -58,52 +58,11 @@ export const _onEnd = function () {
   })[this.loopModel].call(this);
 };
 
-export const _timeFormat = function (time) {
-
-  let minute = time / 60;
-  let minutes = parseInt(minute);
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-
-  let seconds = parseInt(time % 60);
-
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
-
-  return `${minutes}:${seconds}`;
-};
-
-export const _type = (everything) => ({}).toString.call(everything).replace(/\[object\s(.*)\]/, '$1').toLowerCase();
-
-[
-  'String',
-  'Object',
-  'Number',
-  'Boolean',
-  'Function',
-  'Array',
-  'Undefined',
-  'Null'
-].forEach(function (typeString) {
-  _type[`is${typeString}`] = (n) => _type(n) === typeString.toLowerCase();
-});
-
-export const _handleAnalyzer = function (attr, node, openAnalyzer) {
-
-  let classList = node.classList;
-
-  let method = openAnalyzer ? 'add' : 'remove';
-
-  classList[method]('show');
-
-  if(openAnalyzer){
-    _createAnalyzer.call(this, node);
-    node.addEventListener('transitionend', _analyzerPanelHandler.bind(this), false);
-  }
-
-  node.removeAttribute(attr.name);
+export const _resetCover = function () {
+  this.tabbed = true;
+  setTimeout( ()=> {
+    this.tabbed = false;
+  }, 100);
 };
 
 export const _createAnalyzer = function (node, fn) {

@@ -1,22 +1,26 @@
 import {
   _audio,
   _loopModels,
-  _timeFormat,
-  _createAnalyzer
+  _createAnalyzer,
+  _resetCover
 } from './pravite';
+
+import {_timeFormat} from './util'
 
 import {
   _iterator
-} from '../common/util';
+} from './util';
 
 export default {
   playPrev(){
     this.curIndex = this.curIndex === 0 ? this.list.length - 1 : this.curIndex - 1;
     this.play();
+    _resetCover.call(this);
   },
   playNext(){
     this.curIndex = this.list[this.curIndex + 1] ? this.curIndex + 1 : 0;
     this.play();
+    _resetCover.call(this);
   },
   togglePlay(){
     this.paused = !this.paused;
@@ -36,6 +40,7 @@ export default {
   playByIndex(index){
     this.curIndex = index;
     this.play();
+    _resetCover.call(this);
   },
   tabLoopModel(){
     let index = _loopModels.indexOf(this.loopModel);

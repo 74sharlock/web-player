@@ -10,13 +10,13 @@
 <div id="yiBanWebPlayer" class="yiban-web-player hidden">
   <div class="player-container">
     <div class="flash-btn icon-flash" :class="{active: showAnalyzer}" @click="toggleAnalyzer"></div>
-    <div class="loop-btn" :class="'model-' + loopModel" @click="tabLoopModel"></div>
+    <div class="loop-btn" :class="'model-' + loopModel" :title="loopModelTitle" @click="tabLoopModel"></div>
     <div class="name"><span>{{song.name}}</span></div>
     <div class="artist"><span>{{song.artist}}{{song.album ? ' -《' + song.album + '》' : ''}}</span></div>
-    <div class="cover" cover>
-    <span
-      :class="{'no-cover': !song.cover}"
-      :style="{backgroundImage: song.cover ? 'url(' + song.cover + ')' : 'none'}"></span>
+    <div class="cover">
+      <span
+        :class="{'no-cover': !song.cover, stop: paused, 'cover-spin': !tabbed}"
+        :style="{backgroundImage: song.cover ? 'url(' + song.cover + ')' : 'none'}"></span>
     </div>
     <div class="progress">
       <div class="timer">{{currentTime}}</div>
