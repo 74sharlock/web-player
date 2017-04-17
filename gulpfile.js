@@ -25,8 +25,7 @@ balm.config = {
     },
     entry: {
       demo: './app/js/demo',
-      'player_v1.0': './app/js/1.0/player',
-      'player_v1.1': './app/js/1.1/player'
+      player: './app/js/1.1/player'
     },
     sourceMap: false
   },
